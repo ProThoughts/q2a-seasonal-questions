@@ -14,9 +14,10 @@ $params['fromname'] = qa_opt('site_title');
 $params['subject'] = '【' . qa_opt('site_title') . '】この時期の過去の質問';
 $params['body'] = $body;
 $params['toname'] = '管理人';
-$params['toemail'] = 'yuichi.shiga@gmail.com';
+$params['toemail'] = 'syumatsu@beekeep.sakura.ne.jp';
 $params['html'] = false;
 
+echo $body;
 
 qa_send_email($params);
 
