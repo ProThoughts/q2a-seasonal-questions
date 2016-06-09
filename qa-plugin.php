@@ -1,7 +1,7 @@
 <?php
 /*
-	Plugin Name: Seasonal questions 
-	Plugin URI: 
+	Plugin Name: Seasonal questions
+	Plugin URI:
 	Plugin Description: seasonal questions
 	Plugin Version: 0.3
 	Plugin Date: 2015-06-21
@@ -9,7 +9,7 @@
 	Plugin Author URI:
 	Plugin License: GPLv2
 	Plugin Minimum Question2Answer Version: 1.7
-	Plugin Update Check URI: 
+	Plugin Update Check URI:
 */
 if (!defined('QA_VERSION')) {
 	header('Location: ../../');
@@ -22,12 +22,12 @@ require_once QA_INCLUDE_DIR.'db/selects.php';
 
 function getHotQuestions() {
 
-	$voteuserid = 0; 
+	$voteuserid = 0;
 	$sort='hotness';
 	$start=0;
-	$categoryslugs=null; 
-	$createip=null; 
-	$specialtype='Q'; 
+	$categoryslugs=null;
+	$createip=null;
+	$specialtype='Q';
 	$full=false;
 	$count=6;
 	$selectspec=qa_db_qs_selectspec($voteuserid, $sort, $start, $categoryslugs, $createip, $specialtype, $full, $count);
@@ -45,6 +45,7 @@ function getSeasonalQuestions() {
 	}
 	$date = '%-' . $month . '-' . $day . '%';
 
+	$userid = '1';
 	$selectspec=qa_db_posts_basic_selectspec($userid);
 	$selectspec['source'] .=" WHERE type='Q'";
 	$selectspec['source'] .= " AND ^posts.created like '" . $date . "' ORDER BY RAND() LIMIT 6";
@@ -67,6 +68,6 @@ function getWeekQuestions() {
 	$sql .= "from qa_posts where type='Q' AND ";
 	$sql .= " created like '" . $date . "' order by views desc";
 
-	$result = qa_db_query_sub($sql); 
+	$result = qa_db_query_sub($sql);
 	return qa_db_read_all_assoc($result);
 }
