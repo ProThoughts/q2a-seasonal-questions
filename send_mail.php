@@ -22,6 +22,7 @@ echo $body;
 qa_send_email($params);
 
 function crateBody($questions){
+	$body = '';
 	foreach ($questions as $q) {
 		$body .= '・[' . date("Y/n/j", strtotime($q['created'])) . '] ' . $q['title'] . "\n";
 		$body .= qa_opt('site_url') . $q['postid'] . "\n";
